@@ -1,16 +1,18 @@
-name: Automate Issue Assignment
+name: Label New Issues as "To Do"
 
 on:
   issues:
     types: [opened]
 
+permissions:
+  issues: write  # Explicitly grants write permission to manage issues
+
 jobs:
-  assign-issue:
+  label_issue:
     runs-on: ubuntu-latest
     steps:
-      - name: Assign Issue
-        uses: octokit/request-action@v2.x
+      - name: Label new issue as "To Do"
+        uses: actions-ecosystem/action-add-labels@v1
         with:
-          route: POST /repos/rojinatefimehr/git_ci_test/issues/${{ github.event.issue.number }}/assignees
-          assignees: rojinatefimehr
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: "To Do"
