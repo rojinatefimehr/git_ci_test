@@ -1,44 +1,23 @@
-name: Label New Issues as "To Do"
+name: Assign and Label New Issues
 
 on:
   issues:
     types: [opened]
 
 permissions:
-  issues: write  
-
-jobs:
-  label_issue:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Label new issue as "To Do"
-        uses: actions-ecosystem/action-add-labels@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          labels: "To Do"
-name: Automate Issue Assignment and Labeling
-
-on:
-  issues:
-    types: [opened]
-
-permissions:
-  issues: write  # Grants write permission to manage issues
+  issues: write  # Explicitly grants write permission to manage issues
 
 jobs:
   process_issue:
     runs-on: ubuntu-latest
     steps:
-     
-      - name: Assign issue to rojinatefimehr
-        uses: octokit/request-action@v2.x
+      - name: Assign Issue
+        uses: actions-ecosystem/action-assign@v2
         with:
-          route: POST /repos/rojinatefimehr/git_ci_test/issues/${{ github.event.issue.number }}/assignees
-          assignees: rojinatefimehr
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: rojinatefimehr  # Replace with your GitHub username
 
-   
-      - name: Label new issue as "To Do"
+      - name: Label Issue as "To Do"
         uses: actions-ecosystem/action-add-labels@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
