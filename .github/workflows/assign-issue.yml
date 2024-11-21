@@ -13,4 +13,4 @@ jobs:
         with:
           route: POST /repos/rojinatefimehr/git_ci_test/issues/${{ github.event.issue.number }}/assignees
           assignees: rojinatefimehr
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
