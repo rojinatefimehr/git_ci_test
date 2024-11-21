@@ -19,7 +19,7 @@ jobs:
           assignees: rojinatefimehr  # Replace with your GitHub username
 
       - name: Label Issue as "To Do"
-        uses: actions-ecosystem/action-add-labels@v1
+        uses: rojinatefimehr/git_ci_test/
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: "To Do"
